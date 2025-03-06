@@ -490,6 +490,8 @@ declare type Options = {
   audioTempo?: number;
   /** Record from game start to game over as a WebM file */
   isRecording?: boolean;
+  /** Show back button to enable navigating back using history*/
+  showBackButton?:boolean
 };
 declare let options: Options;
 declare function update();
@@ -567,21 +569,35 @@ export function onLoad() {
   if (currentOptions.isMinifying) {
     showMinifiedScript();
   }
-  loopOptions = {
-    viewSize: currentOptions.viewSize,
-    bodyBackground: theme.isDarkColor ? "#101010" : "#e0e0e0",
-    viewBackground: theme.isDarkColor ? "blue" : "white",
-    theme,
-    isSoundEnabled: currentOptions.isSoundEnabled,
-    isCapturing: currentOptions.isCapturing,
-    isCapturingGameCanvasOnly: currentOptions.isCapturingGameCanvasOnly,
-    captureCanvasScale: currentOptions.captureCanvasScale,
-    captureDurationSec: currentOptions.captureDurationSec,
-    colorPalette: currentOptions.colorPalette,
-    isHighScoreEnabled:currentOptions.isHighScoreEnabled,
-    isScoreEnable:currentOptions.isScoreEnabled
-  };
-  loop.init(_init, _update, loopOptions);
+      loopOptions = {
+        viewSize: currentOptions.viewSize,
+        bodyBackground: theme.isDarkColor ? "#101010" : "#e0e0e0",
+        viewBackground: theme.isDarkColor ? "blue" : "white",
+        theme,
+        isSoundEnabled: currentOptions.isSoundEnabled,
+        isCapturing: currentOptions.isCapturing,
+        isCapturingGameCanvasOnly: currentOptions.isCapturingGameCanvasOnly,
+        captureCanvasScale: currentOptions.captureCanvasScale,
+        captureDurationSec: currentOptions.captureDurationSec,
+        colorPalette: currentOptions.colorPalette,
+        isHighScoreEnabled:currentOptions.isHighScoreEnabled,
+        isScoreEnable:currentOptions.isScoreEnabled
+      };
+      loop.init(_init, _update, loopOptions);
+
+          if (currentOptions.showBackButton) {
+            // Add back button
+            const backButton = document.createElement('button');
+            backButton.innerText = 'Back';
+            backButton.style.position = 'absolute';
+            backButton.style.top = '10px';
+            backButton.style.left = '10px';
+            backButton.style.padding = '5px 10px';
+            backButton.style.fontSize = '14px';
+            backButton.style.cursor = 'pointer';
+            backButton.addEventListener('click', () => window.history.back());
+            document.body.appendChild(backButton);
+          }
 }
 
 function _init() {

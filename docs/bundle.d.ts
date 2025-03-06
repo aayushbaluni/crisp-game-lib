@@ -17,7 +17,8 @@ declare type Options = {
   captureDurationSec?: number;
   isShowingScore?: boolean;
   isHighScoreEnabled?:boolean
-  isScoreEnabled?:boolean
+  isScoreEnabled?:boolean;
+  showBackButton?:boolean;
   isShowingTime?: boolean;
   isReplayEnabled?: boolean;
   isRewindEnabled?: boolean;

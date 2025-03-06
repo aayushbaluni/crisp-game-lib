@@ -3993,6 +3993,19 @@ lll
             isScoreEnable: currentOptions.isScoreEnabled
         };
         init$2(_init, _update, loopOptions);
+        if (currentOptions.showBackButton) {
+            // Add back button
+            const backButton = document.createElement('button');
+            backButton.innerText = 'Back';
+            backButton.style.position = 'absolute';
+            backButton.style.top = '10px';
+            backButton.style.left = '10px';
+            backButton.style.padding = '5px 10px';
+            backButton.style.fontSize = '14px';
+            backButton.style.cursor = 'pointer';
+            backButton.addEventListener('click', () => window.history.back());
+            document.body.appendChild(backButton);
+        }
     }
     function _init() {
         if (typeof description !== "undefined" &&

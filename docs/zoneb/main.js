@@ -27,6 +27,7 @@ options = {
   isPlayingBgm: true,
   isReplayEnabled: true,
   isScoreEnabled:false,
+  showBackButton:true,
   seed: 15,
 };
 
