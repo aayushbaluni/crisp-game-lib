@@ -52,10 +52,6 @@
    - In `src/audio.ts`, the `isAudioFilesEnabled` flag controls audio functionalities. If not properly set, audio-related functions might fail silently.
    - The `playAudioFile` function returns a boolean but doesn't provide feedback on why playback failed (e.g., file not loaded or audio context not initialized).
 
-3. **Button Interaction Edge Cases**
-   - In `src/button.ts`, rapid clicking might not correctly toggle button states due to the reliance on `isJustPressed` and `isJustReleased` flags.
-   - Toggle groups are managed manually; lack of a centralized group management system could lead to inconsistent states when multiple buttons are involved.
-
 4. **Responsive Design Limitations**
    - The `setSize` function in `src/view.ts` adjusts canvas size based on window dimensions but doesn't handle extreme aspect ratios gracefully, which might distort the gameplay view.
 

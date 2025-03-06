@@ -3420,14 +3420,8 @@ lll
             button.onClick();
             button.isPressed = false;
             if (button.isToggle) {
-                if (button.toggleGroup.length === 0) {
+                {
                     button.isSelected = !button.isSelected;
-                }
-                else {
-                    button.toggleGroup.forEach((b) => {
-                        b.isSelected = false;
-                    });
-                    button.isSelected = true;
                 }
             }
         }

@@ -48,6 +48,31 @@ export function get({
   };
 }
 
+let toggleManager: ToggleManager | null = null;
+
+/** @ignore */
+export class ToggleManager {
+  private buttons: Button[] = [];
+
+  register(button: Button) {
+    this.buttons.push(button);
+    button.toggleGroup = this.buttons.filter(b => b !== button);
+  }
+
+  deselectAll(except: Button) {
+    this.buttons.forEach(button => {
+      if (button !== except) {
+        button.isSelected = false;
+      }
+    });
+  }
+}
+
+/** @ignore */
+export function initializeToggleManager(manager: ToggleManager) {
+  toggleManager = manager;
+}
+
 /** @ignore */
 export function update(button: Button) {
   const o = new Vector(input.pos).sub(button.pos);
@@ -62,18 +87,16 @@ export function update(button: Button) {
     button.onClick();
     button.isPressed = false;
     if (button.isToggle) {
-      if (button.toggleGroup.length === 0) {
-        button.isSelected = !button.isSelected;
-      } else {
-        button.toggleGroup.forEach((b) => {
-          b.isSelected = false;
-        });
+      if (toggleManager) {
+        toggleManager.deselectAll(button);
         button.isSelected = true;
+      } else {
+        button.isSelected = !button.isSelected;
       }
     }
   }
-  draw(button);
-}
+      draw(button);
+    }
 
 export function draw(button: Button) {
   saveCurrentColor();
