@@ -1,14 +1,14 @@
 {
-  "name": "crisp-game-lib",
+  "name": "boss-game-studio",
   "version": "1.3.0",
   "description": "Minimal JavaScript library for creating classic arcade-like mini-games running in the browser",
   "author": "abagames",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/abagames/crisp-game-lib.git"
+    "url": "https://github.com/boss-game-studio/boss-game-studio.git"
   },
-  "homepage": "https://github.com/abagames/crisp-game-lib",
+  "homepage": "https://github.com/boss-game-studio/boss-game-studio",
   "main": "docs/bundle.js",
   "typings": "docs/bundle.d.ts",
   "scripts": {

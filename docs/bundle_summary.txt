@@ -1,0 +1,144 @@
+# `bundle.js` Breakdown
+
+## 1. Utility Functions
+- **`clamp(v, low = 0, high = 1)`**: Restricts the value `v` within the range `[low, high]`.
+- **`wrap(v, low, high)`**: Wraps the value `v` within the range `[low, high]` using modulo arithmetic.
+- **`isInRange(v, low, high)`**: Checks if `v` is within `[low, high)`.
+- **`range(v)`**: Generates an array of integers from `0` to `v-1`.
+- **`times(count, func)`**: Executes a function `func` `count` times and returns an array of results.
+- **`remove(array, func)`**: Removes elements from `array` based on a condition defined by `func`.
+- **`fromEntities(v)`**: Converts an iterable of `[key, value]` pairs into an object.
+- **`entries(obj)`**: Converts an object into an array of `[key, value]` pairs.
+- **`addWithCharCode(char, offset)`**: Returns a character shifted by `offset` Unicode values.
+
+## 2. Vector Class
+- **`Vector`**: Represents a two-dimensional vector with properties `x` and `y`.
+  - **Methods**:
+    - `set(x, y)`: Sets the vector's components.
+    - `add(x, y)`: Adds another vector or scalar values.
+    - `sub(x, y)`: Subtracts another vector or scalar values.
+    - `mul(v)`: Multiplies the vector by a scalar.
+    - `div(v)`: Divides the vector by a scalar.
+    - `clamp(xLow, xHigh, yLow, yHigh)`: Clamps the vector within specified ranges.
+    - `wrap(xLow, xHigh, yLow, yHigh)`: Wraps the vector within specified ranges.
+    - `addWithAngle(angle, length)`: Adds a vector based on angle and length.
+    - `normalize()`: Normalizes the vector to unit length.
+    - `rotate(angle)`: Rotates the vector by a given angle.
+    - `angleTo(x, y)`: Calculates the angle to another point or vector.
+    - `distanceTo(x, y)`: Calculates the distance to another point or vector.
+    - `isInRect(x, y, width, height)`: Checks if the vector is within a rectangle.
+    - `equals(other)`: Checks equality with another vector.
+    - `floor()`, `round()`, `ceil()`: Applies floor, round, and ceil operations to vector components.
+  - **Getters**:
+    - `length`: Returns the magnitude of the vector.
+    - `angle`: Returns the angle of the vector.
+
+## 3. Color Management
+- **Color Definitions**:
+  - `colors`: Array of color names.
+  - `colorChars`: Mapping of shorthand color characters to color names.
+  - `rgbNumbers`: Array of RGB values for basic colors.
+- **Functions**:
+  - **`init$8(isDarkColor, colorPalette)`**: Initializes color values based on the theme and custom palette.
+  - **`setCustomColorPalette(colorPalette)`**: Assigns custom colors to existing definitions.
+  - **`colorDistance(color1, color2)`**: Calculates the distance between two colors for matching.
+  - **`getRgb(i, isDarkColor)`**: Retrieves RGB values based on index and theme.
+  - **`colorToNumber(color, ratio = 1)`**: Converts color names or indices to numeric RGB values.
+  - **`colorToStyle(color, ratio = 1)`**: Converts color names or indices to CSS color strings.
+
+## 4. Graphics Functions
+- **Rendering Setup**:
+  - Uses PIXI for advanced rendering if the theme requires it.
+  - Sets up canvas dimensions, scaling, and styles based on the theme.
+- **Drawing Functions**:
+  - **`fillRect(x, y, width, height)`**: Draws a filled rectangle.
+  - **`drawLine$1(x1, y1, x2, y2, thickness)`**: Draws a line between two points with specified thickness.
+  - **`arc(centerX, centerY, radius, thickness, angleFrom, angleTo)`**: Draws an arc based on center, radius, thickness, and angles.
+  - **`drawRect(isAlignCenter, x, y, width, height)`**: Draws a rectangle with optional center alignment.
+  - **`drawLine(p, l, thickness, isAddingToTmp)`**: Draws a line based on position and length.
+  - **`addRect(isAlignCenter, x, y, width, height, isAddingToTmp, isDrawing)`**: Adds a rectangle to the hitboxes for collision detection.
+- **Color Handling**:
+  - **`setColor(colorNameOrColorIndex)`**: Sets the current drawing color.
+  - **`beginFillColor(color)`**: Begins filling with a specific color.
+  - **`endFill()`**: Ends the current fill operation.
+  - **`saveCurrentColor()`** & **`loadCurrentColor()`**: Manages color state saving and loading.
+
+## 5. Input Handling
+- **Keyboard Module**:
+  - Initializes keyboard event listeners.
+  - Tracks key states: pressed, just pressed, just released.
+- **Pointer Module**:
+  - Initializes mouse and touch event listeners.
+  - Tracks pointer position and states: pressed, just pressed, just released.
+- **Input Module**:
+  - Combines keyboard and pointer inputs.
+  - Provides unified input state: position, pressed states.
+
+## 6. Audio Handling
+- **Audio Context**:
+  - Initializes the Web Audio API context.
+  - Manages audio playback, including sound effects and background music.
+- **Functions**:
+  - **`play(type, options)`**: Plays a sound effect based on type and options.
+  - **`playBgm()`**: Plays background music.
+  - **`stopBgm()`**: Stops background music.
+  - **`addGameScript()`**: Adds external game scripts dynamically.
+
+## 7. Game State Variables
+- **Core Variables**:
+  - `ticks`: Increments every frame to track time.
+  - `difficulty`: Scales with ticks to increase game difficulty.
+  - `score`: Tracks the player's score.
+  - `isReplaying`: Indicates if the game is in replay mode.
+  - `time`: Tracks game time.
+- **Other State Variables**:
+  - Variables for enemies, walls, bullets, player, levels, targets, and collision detection.
+
+## 8. Game Loop
+- **Initialization**:
+  - **`init(settings)`**: Sets up game settings including titles, descriptions, characters, options, and audio files.
+  - **`onLoad()`**: Merges settings, initializes audio, characters, and starts the game loop.
+- **Update Cycle**:
+  - **`_update()`**: Core update function called every frame.
+    - Increments ticks and updates difficulty.
+    - Updates game loop states: title screen, in-game, game over, rewind.
+- **State Management**:
+  - **`initInGame()`**: Initializes in-game variables and settings.
+  - **`updateInGame()`**: Updates game elements, handles scoring, and manages game logic.
+  - **`initTitle()`**: Sets up the title screen.
+  - **`updateTitle()`**: Updates title screen elements and handles start of the game.
+  - **`initGameOver()`**: Handles game over state.
+  - **`updateGameOver()`**: Updates game over screen and handles transition.
+  - **`initRewind()`**: Sets up rewind functionality.
+  - **`updateRewind()`**: Manages rewind state and user interactions.
+
+## 9. Rewind and Replay
+- **Recording and Replaying**:
+  - Functions to record game states and inputs for replaying and rewinding.
+  - **`initRecord(randomSeed)`**: Initializes recording with a random seed.
+  - **`recordInput(input)`**: Records user inputs during gameplay.
+  - **`initReplay(random)`**: Initializes replay functionality.
+  - **`replayInput()`**: Replays recorded inputs.
+  - **`initFrameStates()`**: Initializes frame state recording.
+  - **`recordFrameState(state, baseState, random)`**: Records the game state for each frame.
+  - **`rewind$1(random)`**: Handles rewinding the game state.
+  - **`getLastFrameState(random)`**: Retrieves the last recorded frame state.
+  - **`restoreInput()`**: Restores the last input state.
+
+## 10. Minification
+- **Script Minification**:
+  - **`showMinifiedScript()`**: Fetches and minifies the game script using Terser.
+  - Applies predefined replacements (`minifyReplaces`) to optimize the code.
+
+## 11. Exports
+- **Global Exports**:
+  - Exports various functions, constants, and variables to the global `window` object for accessibility.
+  - Examples:
+    - `exports.ticks`, `exports.score`, `exports.difficulty`
+    - Utility functions like `exports.clamp`, `exports.rnd`, `exports.color`
+    - Graphics and input functions like `exports.fillRect`, `exports.char`, `exports.input`
+    - Audio functions like `exports.play`, `exports.playBgm`, `exports.stopBgm`
+
+---
+
+This breakdown provides an overview of the key components and functionalities within `bundle.js`, highlighting utility functions, vector management, color handling, graphics rendering, input management, audio control, game state variables, and the main game loop structure.

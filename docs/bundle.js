@@ -2648,14 +2648,14 @@ lll
 
     var keyboard = /*#__PURE__*/Object.freeze({
         __proto__: null,
-        get isPressed () { return isPressed$2; },
+        clearJustPressed: clearJustPressed$2,
+        get code () { return code; },
+        codes: codes,
+        init: init$5,
         get isJustPressed () { return isJustPressed$2; },
         get isJustReleased () { return isJustReleased$2; },
-        codes: codes,
-        get code () { return code; },
-        init: init$5,
-        update: update$6,
-        clearJustPressed: clearJustPressed$2
+        get isPressed () { return isPressed$2; },
+        update: update$6
     });
 
     class Random {
@@ -2837,13 +2837,13 @@ lll
 
     var pointer = /*#__PURE__*/Object.freeze({
         __proto__: null,
-        pos: pos$1,
-        get isPressed () { return isPressed$1; },
+        clearJustPressed: clearJustPressed$1,
+        init: init$4,
         get isJustPressed () { return isJustPressed$1; },
         get isJustReleased () { return isJustReleased$1; },
-        init: init$4,
-        update: update$5,
-        clearJustPressed: clearJustPressed$1
+        get isPressed () { return isPressed$1; },
+        pos: pos$1,
+        update: update$5
     });
 
     /** A pressed position of mouse or touch screen. */
@@ -2888,14 +2888,14 @@ lll
 
     var input = /*#__PURE__*/Object.freeze({
         __proto__: null,
-        get pos () { return pos; },
-        get isPressed () { return isPressed; },
+        clearJustPressed: clearJustPressed,
+        init: init$3,
         get isJustPressed () { return isJustPressed; },
         get isJustReleased () { return isJustReleased; },
-        init: init$3,
-        update: update$4,
-        clearJustPressed: clearJustPressed,
-        set: set
+        get isPressed () { return isPressed; },
+        get pos () { return pos; },
+        set: set,
+        update: update$4
     });
 
     let audioContext;
@@ -3674,7 +3674,7 @@ lll
      * @param y A y-coordinate where added point is displayed.
      */
     function addScore(value, x, y) {
-        if (exports.isReplaying) {
+        if (exports.isReplaying || !currentOptions.isScoreEnabled) {
             return;
         }
         exports.score += value;
@@ -3888,6 +3888,8 @@ lll
         captureCanvasScale: 1,
         captureDurationSec: 5,
         isShowingScore: true,
+        isHighScoreEnabled: true,
+        isScoreEnabled: true,
         isShowingTime: false,
         isReplayEnabled: false,
         isRewindEnabled: false,
@@ -3987,6 +3989,8 @@ lll
             captureCanvasScale: currentOptions.captureCanvasScale,
             captureDurationSec: currentOptions.captureDurationSec,
             colorPalette: currentOptions.colorPalette,
+            isHighScoreEnabled: currentOptions.isHighScoreEnabled,
+            isScoreEnable: currentOptions.isScoreEnabled
         };
         init$2(_init, _update, loopOptions);
     }
@@ -4301,17 +4305,21 @@ lll
                 7 * (currentOptions.isUsingSmallText ? smallLetterWidth : letterSize), 3);
         }
         else if (currentOptions.isShowingScore) {
-            print(`${Math.floor(exports.score)}`, 3, 3, {
-                isSmallText: currentOptions.isUsingSmallText,
-                edgeColor: currentOptions.textEdgeColor.score,
-            });
-            const hs = `HI ${hiScore}`;
-            print(hs, size.x -
-                hs.length *
-                    (currentOptions.isUsingSmallText ? smallLetterWidth : letterSize), 3, {
-                isSmallText: currentOptions.isUsingSmallText,
-                edgeColor: currentOptions.textEdgeColor.score,
-            });
+            if (currentOptions.isScoreEnabled) {
+                print(`${Math.floor(exports.score)}`, 3, 3, {
+                    isSmallText: currentOptions.isUsingSmallText,
+                    edgeColor: currentOptions.textEdgeColor.score,
+                });
+            }
+            if (currentOptions.isHighScoreEnabled) {
+                const hs = `HI ${hiScore}`;
+                print(hs, size.x -
+                    hs.length *
+                        (currentOptions.isUsingSmallText ? smallLetterWidth : letterSize), 3, {
+                    isSmallText: currentOptions.isUsingSmallText,
+                    edgeColor: currentOptions.textEdgeColor.score,
+                });
+            }
         }
     }
     function drawTime(time, x, y) {
@@ -4360,6 +4368,9 @@ lll
         return hash;
     }
     function saveHighScore(highScore) {
+        if (!currentOptions.isHighScoreEnabled) {
+            return;
+        }
         if (localStorageKey == null) {
             return;
         }
@@ -4372,6 +4383,9 @@ lll
         }
     }
     function loadHighScore() {
+        if (!currentOptions.isHighScoreEnabled) {
+            return 0;
+        }
         try {
             const gameStateString = localStorage.getItem(localStorageKey);
             if (gameStateString) {
@@ -4458,7 +4472,7 @@ lll
     }
     /** @ignore */
     function rmv(...args) {
-        return remove.apply(this.args);
+        return remove.apply(this, args);
     }
     /** @ignore */
     exports.tc = void 0;

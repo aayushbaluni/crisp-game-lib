@@ -141,7 +141,7 @@ export function complete(completeText = "COMPLETE") {
  * @param y A y-coordinate where added point is displayed.
  */
 export function addScore(value: number, x?: number | VectorLike, y?: number) {
-  if (isReplaying) {
+  if (isReplaying || !currentOptions.isScoreEnabled) {
     return;
   }
   score += value;
@@ -392,6 +392,8 @@ const defaultOptions: Options = {
   captureCanvasScale: 1,
   captureDurationSec: 5,
   isShowingScore: true,
+  isHighScoreEnabled: true,
+  isScoreEnabled: true,
   isShowingTime: false,
   isReplayEnabled: false,
   isRewindEnabled: false,
@@ -437,6 +439,10 @@ declare type Options = {
   captureDurationSec?: number;
   /** Show a score and a hi-score, default: true. */
   isShowingScore?: boolean;
+  /** Enable high score functionality. */
+  isHighScoreEnabled?: boolean;
+  /** Enable score functionality. */
+  isScoreEnabled?: boolean;
   /** Show a time. */
   /** @ignore */
   isShowingTime?: boolean;
@@ -572,6 +578,8 @@ export function onLoad() {
     captureCanvasScale: currentOptions.captureCanvasScale,
     captureDurationSec: currentOptions.captureDurationSec,
     colorPalette: currentOptions.colorPalette,
+    isHighScoreEnabled:currentOptions.isHighScoreEnabled,
+    isScoreEnable:currentOptions.isScoreEnabled
   };
   loop.init(_init, _update, loopOptions);
 }
@@ -910,11 +918,14 @@ function drawScoreOrTime() {
       3
     );
   } else if (currentOptions.isShowingScore) {
+   if(currentOptions.isScoreEnabled){
     print(`${Math.floor(score)}`, 3, 3, {
       isSmallText: currentOptions.isUsingSmallText,
       edgeColor: currentOptions.textEdgeColor.score,
     });
-    const hs = `HI ${hiScore}`;
+   }
+    if(currentOptions.isHighScoreEnabled){
+      const hs = `HI ${hiScore}`;
     print(
       hs,
       view.size.x -
@@ -926,6 +937,7 @@ function drawScoreOrTime() {
         edgeColor: currentOptions.textEdgeColor.score,
       }
     );
+    }
   }
 }
 
@@ -980,6 +992,9 @@ function getHash(v: string) {
 }
 
 function saveHighScore(highScore: number) {
+  if (!currentOptions.isHighScoreEnabled) {
+    return;
+  }
   if (localStorageKey == null) {
     return;
   }
@@ -992,6 +1007,9 @@ function saveHighScore(highScore: number) {
 }
 
 function loadHighScore() {
+  if (!currentOptions.isHighScoreEnabled) {
+    return 0;
+  }
   try {
     const gameStateString = localStorage.getItem(localStorageKey);
     if (gameStateString) {
@@ -1086,7 +1104,7 @@ export function tms(...args) {
 }
 /** @ignore */
 export function rmv(...args) {
-  return remove.apply(this.args);
+  return remove.apply(this, args);
 }
 /** @ignore */
 export let tc: number;

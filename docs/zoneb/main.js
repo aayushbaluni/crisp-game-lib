@@ -26,6 +26,7 @@ lll
 options = {
   isPlayingBgm: true,
   isReplayEnabled: true,
+  isScoreEnabled:false,
   seed: 15,
 };
 
