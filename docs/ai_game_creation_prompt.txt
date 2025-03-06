@@ -1,0 +1,228 @@
+# AI Game Development Prompt
+
+## Objective
+
+Enable an AI to develop a complete and functional game based on user-provided detailed descriptions of characters and game flow presented in paragraph form. The AI should accurately interpret the inputs to generate detailed game structures, including character definitions, levels, objectives, challenges, and game mechanics.
+
+## User Input Structure
+
+Users should provide game creation input as detailed paragraphs containing information about the game title, description, characters, game flow, and game mechanics.
+
+### Example Input
+
+```
+I am developing a game titled "Adventure Quest." It is a thrilling adventure game where players explore mystical lands, battle creatures, and solve puzzles. The main characters include Aria, a skilled archer with emerald green eyes and flowing brown hair, who is brave, loyal, and resourceful. She is the main protagonist who leads the exploration team. Another character is Borin, a stout dwarf with a braided beard and a mighty hammer. He is gruff, strong-willed, and protective, serving as the team's blacksmith and defensive specialist.
+
+The game flow consists of multiple levels. In Level 1, "Enchanted Forest," players must explore the forest to find a hidden artifact and defeat the forest guardian. Challenges include navigating through dense trees and battling woodland creatures. In Level 2, "Crystal Caves," players solve puzzles to unlock the cave's secrets and retrieve the crystal key, facing challenges like avoiding collapsing tunnels and defeating cave-dwelling monsters. The final boss is the "Shadow King," a formidable sorcerer controlling dark forces, located in the Dark Castle. Players must defeat him to save the realm, overcoming his dark magic and breaking his protective barriers.
+
+Game mechanics include controls where players use WASD keys for movement, the left mouse button to attack, and the spacebar for special abilities. The combat system is real-time with skill-based attacks and defenses. Players can collect and manage items such as weapons, potions, and keys through the inventory system.
+```
+
+## AI Generation Instructions
+
+Using the provided detailed paragraphs, generate the following components to create a complete game:
+
+### 1. Game Structure
+
+- **Project Setup:**
+  - Initialize a new project directory named after the `game_title` (e.g., `AdventureQuest`).
+  - Create necessary configuration files (e.g., `package.json`, `tsconfig.json`, `rollup.config.js`).
+  - Set up the project's folder structure, including directories for `src`, `assets`, `configs`, and `docs`.
+
+- **Dependencies:**
+  - Install required libraries and frameworks (e.g., Phaser for game development).
+  - Ensure all dependencies are listed in `package.json`.
+
+### 2. Character Definitions
+
+- **Create Character Classes:**
+  - For each character described in the paragraphs, create a corresponding class in `src/characters/`.
+  - Define properties such as `name`, `appearance`, `personality`, and `role`.
+  - Implement methods for character actions and abilities.
+
+- **Example:**
+
+  ```typescript
+  // src/characters/Aria.ts
+  export class Aria {
+    name: string = "Aria";
+    appearance: string = "A skilled archer with emerald green eyes and flowing brown hair.";
+    personality: string = "Brave, loyal, and resourceful.";
+    role: string = "Main protagonist who leads the exploration team.";
+
+    constructor() {
+      // Initialize character-specific attributes
+    }
+
+    // Define character actions and abilities
+    attack() {
+      // Attack logic
+    }
+
+    useSpecialAbility() {
+      // Special ability logic
+    }
+  }
+  ```
+
+### 3. Game Flow Implementation
+
+- **Levels:**
+  - For each level described in the paragraphs, create corresponding scene files in `src/scenes/`.
+  - Implement objectives and challenges as part of the level's logic.
+
+- **Final Boss:**
+  - Create a boss class in `src/bosses/ShadowKing.ts`.
+  - Define the boss's behavior, attack patterns, and weaknesses.
+
+- **Example:**
+
+  ```typescript
+  // src/scenes/EnchantedForest.ts
+  import { Scene } from "phaser";
+
+  export class EnchantedForest extends Scene {
+    constructor() {
+      super({ key: "EnchantedForest" });
+    }
+
+    preload() {
+      // Load assets specific to Enchanted Forest
+    }
+
+    create() {
+      // Initialize level objectives and challenges
+    }
+
+    update() {
+      // Handle game loop events
+    }
+  }
+  ```
+
+### 4. Game Mechanics
+
+- **Controls:**
+  - Implement input handling based on the `controls` configuration.
+  - Map keys to actions such as movement, attack, and special abilities.
+
+- **Combat System:**
+  - Develop a real-time combat system.
+  - Define attack and defense mechanics within character classes.
+
+- **Inventory System:**
+  - Create an inventory management system.
+  - Allow players to collect, use, and manage items.
+
+- **Example:**
+
+  ```typescript
+  // src/input.ts
+  export class InputHandler {
+    constructor(scene: Phaser.Scene) {
+      this.setupControls(scene);
+    }
+
+    setupControls(scene: Phaser.Scene) {
+      scene.input.keyboard.on('keydown-W', () => {
+        // Move character forward
+      });
+      scene.input.keyboard.on('keydown-A', () => {
+        // Move character left
+      });
+      // Additional key mappings
+    }
+  }
+  ```
+
+### 5. Documentation
+
+- **README.md:**
+  - Provide an overview of the game, setup instructions, and how to run the project.
+
+- **AI Generation Guide:**
+  - Reference `docs/ai_game_creation_guide.txt` for AI-based enhancements and maintenance.
+
+### 6. Best Practices
+
+- **Consistency:**
+  - Maintain a uniform coding style across all files.
+  - Use consistent naming conventions for classes, methods, and variables.
+
+- **Clarity:**
+  - Write clear and concise comments.
+  - Ensure all functionalities are well-documented.
+
+- **Scalability:**
+  - Structure the project to allow easy addition of new features, levels, and characters.
+
+- **Testing:**
+  - Implement testing for critical components to ensure reliability.
+
+## Output Files
+
+Generate the following files based on the user input and AI instructions:
+
+1. `src/characters/[CharacterName].ts` for each character.
+2. `src/scenes/[LevelName].ts` for each level.
+3. `src/bosses/[BossName].ts` for the final boss.
+4. `src/input.ts` for handling game controls.
+5. `README.md` with project overview and setup instructions.
+6. Configuration files such as `package.json`, `tsconfig.json`, and `rollup.config.js`.
+7. Documentation files within the `docs/` directory.
+
+## Example Prompt for AI
+
+When a user provides input about game creation, use the following prompt structure to guide the AI in generating the game:
+
+```
+You are an AI game developer. Based on the provided game title, description, characters, game flow, and game mechanics, generate the necessary project files and code to create a functional game.
+
+### Game Title:
+[game_title]
+
+### Description:
+[description]
+
+### Characters:
+[characters descriptions in paragraphs]
+
+### Game Flow:
+[game_flow descriptions in paragraphs]
+
+### Game Mechanics:
+[game_mechanics descriptions in paragraphs]
+
+### Requirements:
+- Implement character classes with defined properties and methods.
+- Develop scenes for each level with specific objectives and challenges.
+- Create a final boss with unique behaviors and attack patterns.
+- Implement a real-time combat system and inventory management.
+- Ensure the project follows best coding practices for maintainability and scalability.
+- Provide clear documentation in the README.md file.
+
+### Output:
+Generate the code for the project structure, including all necessary files and directories. Ensure that the code is well-documented and follows the specified requirements.
+```
+
+## Usage Instructions
+
+1. **Provide Input:**
+   - Write detailed paragraphs describing the game's title, description, characters, game flow, and game mechanics.
+
+2. **AI Processing:**
+   - The AI will interpret the input and generate the project files and code accordingly.
+
+3. **Review and Adjust:**
+   - Review the generated code for accuracy and make any necessary adjustments or enhancements.
+
+4. **Run the Game:**
+   - Follow the setup instructions in the `README.md` to install dependencies and run the game.
+
+## Notes
+
+- **Templates and Examples:** Utilize the provided examples to structure your inputs effectively.
+- **Validation:** Ensure that all required fields are filled out accurately to allow the AI to generate a coherent and functional game.
+- **Feedback Loop:** After initial generation, test the game and provide feedback to refine and improve the AI-generated code as needed.
+
+By following this guide, the AI will be able to create a comprehensive game structure based on user-provided descriptions, ensuring that the final product aligns with the intended design and functionality.

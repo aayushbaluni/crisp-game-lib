@@ -1,98 +1,146 @@
-<a href="https://abagames.github.io/crisp-game-lib-11-games/?pakupaku"><img src="https://github.com/abagames/crisp-game-lib-11-games/raw/main/docs/pakupaku/screenshot.gif" width="25%" loading="lazy"></a><a href="https://abagames.github.io/crisp-game-lib-11-games/?timbertest"><img src="https://github.com/abagames/crisp-game-lib-11-games/raw/main/docs/timbertest/screenshot.gif" width="25%" loading="lazy"></a><a href="https://abagames.github.io/crisp-game-lib-11-games/?meteoplanet"><img src="https://github.com/abagames/crisp-game-lib-11-games/raw/main/docs/meteoplanet/screenshot.gif" width="25%" loading="lazy"></a><a href="https://abagames.github.io/crisp-game-lib-11-games/?up1way"><img src="https://github.com/abagames/crisp-game-lib-11-games/raw/main/docs/up1way/screenshot.gif" width="25%" loading="lazy"></a>
+# boss-game-studio
 
-# crisp-game-lib
+**Boss Game Studio** is a versatile JavaScript library designed to help you create browser-based games quickly and effortlessly. Whether you're a seasoned developer or just starting out, `boss-game-studio` provides the tools and functionalities you need to bring your game ideas to life.
 
-<a href="https://abagames.github.io/crisp-game-lib-11-games/?cardq"><img src="https://github.com/abagames/crisp-game-lib-11-games/raw/main/docs/cardq/screenshot.gif" width="25%" loading="lazy"></a><a href="https://abagames.github.io/crisp-game-lib-11-games/?chargebeam"><img src="https://github.com/abagames/crisp-game-lib-11-games/raw/main/docs/chargebeam/screenshot.gif" width="25%" loading="lazy"></a><a href="https://abagames.github.io/crisp-game-lib-11-games/?pillars3d"><img src="https://github.com/abagames/crisp-game-lib-11-games/raw/main/docs/pillars3d/screenshot.gif" width="25%" loading="lazy"></a><a href="https://abagames.github.io/crisp-game-lib-11-games/?thunder"><img src="https://github.com/abagames/crisp-game-lib-11-games/raw/main/docs/thunder/screenshot.gif" width="25%" loading="lazy"></a>
+English | 日本語
 
-English | [日本語](https://github.com/abagames/crisp-game-lib/blob/master/README_ja.md)
+## Features
 
-`crisp-game-lib` is a JavaScript library for creating browser games quickly and easily.
+- **Easy to Use:** Simplify game development with straightforward APIs.
+- **IntelliSense Support:** Benefit from intelligent code completion and error checking.
+- **Live Reload:** Experience real-time updates as you develop your game.
+- **Comprehensive Documentation:** Access detailed guides and references to assist you at every step.
+- **Extensive Examples:** Explore sample games and code snippets to kickstart your projects.
 
-- [Step-by-step guide on creating a game using the crisp-game-lib](https://abagames.github.io/literate-diff-viewer/pinclimb/index.html)
+## Getting Started
 
-- [Reference of crisp-game-lib](https://abagames.github.io/crisp-game-lib/ref_document/modules.html)
+Follow these steps to create your first game using `boss-game-studio`:
 
-- [Sample games and sample codes](https://github.com/abagames/crisp-game-lib-11-games/blob/main/README.md)
+1. **Download the Getting Started Guide:**
+   - docs/getting_started/index.html
 
-## Getting started
+2. **Set Up Your Project:**
+   - Open `index.html` in your preferred text editor.
+   - Write your game code within the `<script>` element.
 
-1. Download [docs/getting_started/index.html](https://raw.githubusercontent.com/abagames/crisp-game-lib/master/docs/getting_started/index.html).
+3. **Play Your Game:**
+   - Open `index.html` in a web browser to play your game.
 
-1. Open `index.html` in a text editor and write the code of your game in the `<script>` element.
+4. **Publish Your Game:**
+   - Deploy `index.html` to your web server to share your game with the world.
 
-1. Open `index.html` in a browser and play the game.
+## Develop with IntelliSense and Live Reload
 
-1. You can publish the game by putting `index.html` on your web server.
+Enhance your development workflow with IntelliSense and Live Reload:
 
-## Write your own game (with the help of IntelliSense and Live Reload)
+1. **Clone or Download the Repository:**
+   - Download here.
 
-1. Clone or [download](https://github.com/abagames/crisp-game-lib/archive/refs/heads/master.zip) this repository.
-
-1. `npm install`
-
-1. Copy the `docs/_template` directory and rename it to `docs/[your own game name]`.
-
-1. Open `docs/[your own game name]/main.js` with the editor ([VSCode](https://code.visualstudio.com/) is recommended) and write your own game code.
-
-1. `npm run watch_games`
-
-1. Open the URL `http://localhost:4000?[your own game name]` with a browser to play the game. The page is live-reloaded when the code is rewritten.
-
-## Publish your own game
-
-1. Place `main.js`, [docs/bundle.js](https://raw.githubusercontent.com/abagames/crisp-game-lib/master/docs/bundle.js), and [docs/index.html](https://raw.githubusercontent.com/abagames/crisp-game-lib/master/docs/index.html) on the webserver in the following directory structure.
-
-   ```
-   ┝ [games root directory (any name)]
-      ┝ [your own game name]
-      │  └ main.js
-      ┝ bundle.js
-      └ index.html
+2. **Install Dependencies:**
+   ```bash
+   npm install
    ```
 
-1. Open the URL `[Address of games root directory]/index.html?[your own game name]` with a browser.
+3. **Create Your Game Template:**
+   - Copy the `docs/_template` directory and rename it to `docs/[your-game-name]`.
 
-## Use with a bundler
+4. **Edit Your Game Code:**
+   - Open `docs/[your-game-name]/main.js` in an editor like VSCode and start coding your game.
 
-If you want to build a game using a bundler (e.g. [Vite](https://vitejs.dev/)), do the following.
+5. **Start Live Reload:**
+   ```bash
+   npm run watch_games
+   ```
 
-1. `npm install crisp-game-lib` at your project directory.
+6. **Play Your Game:**
+   - Open `http://localhost:4000?[your-game-name]` in a browser. The page will automatically reload when you make changes to the code.
 
-1. Copy [docs/\_template_bundler/index.html](https://raw.githubusercontent.com/abagames/crisp-game-lib/master/docs/_template_bundler/index.html) and [docs/\_template_bundler/main.js](https://raw.githubusercontent.com/abagames/crisp-game-lib/master/docs/_template_bundler/main.js) to your project directory.
+## Publish Your Game
 
-1. Write game code in `main.js`.
+Deploy your game with ease:
 
-1. Build with the bundler.
+1. **Organize Your Files:**
+   - Place `main.js`, docs/bundle.js, and docs/index.html on your web server following this structure:
+     ```
+     ┝ [games root directory]
+        ┝ [your-game-name]
+        │  └ main.js
+        ┝ bundle.js
+        └ index.html
+     ```
 
-If you want to describe the game using TypeScript, rename `main.js` to `main.ts`.
+2. **Access Your Game:**
+   - Navigate to `[Your Server Address]/index.html?[your-game-name]` in a browser to play.
 
-## Function introduction demo
+## Integrate with a Bundler
 
-[Drawing](https://abagames.github.io/crisp-game-lib/?ref_drawing) /
-[Collision](https://abagames.github.io/crisp-game-lib/?ref_collision) /
-[Input](https://abagames.github.io/crisp-game-lib/?ref_input) /
-[Audio](https://abagames.github.io/crisp-game-lib/?ref_sound)
+For advanced development using bundlers like Vite:
 
-## Related articles
+1. **Install `boss-game-studio`:**
+   ```bash
+   npm install boss-game-studio
+   ```
 
-- [Kenta Cho’s “Crisp Game Lib” Games](https://terrysfreegameoftheweek.com/kento-chos-crisp-game-lib-games/), written by [Terry Cavanagh](https://twitter.com/terrycavanagh), known as the developer of [Super Hexagon](https://store.steampowered.com/app/221640/Super_Hexagon/) and [VVVVVV](https://store.steampowered.com/app/70300/VVVVVV/)
+2. **Set Up Your Project:**
+   - Copy docs/_template_bundler/index.html and docs/_template_bundler/main.js to your project directory.
 
-- [Guide to getting started with CrispGameLib](https://github.com/JunoNgx/crisp-game-lib-tutorial), written by [Juno Nguyen](https://twitter.com/JunoNgx)
+3. **Develop Your Game:**
+   - Write your game logic in `main.js`.
 
-- [crisp-game-lib, a game library for creating mini-games with minimal effort](https://dev.to/abagames/crisp-game-lib-a-game-library-for-creating-mini-games-with-minimal-effort-3816)
+4. **Build Your Project:**
+   - Use your chosen bundler to build the project.
+
+5. **TypeScript Support:**
+   - Rename `main.js` to `main.ts` to write your game in TypeScript.
+
+## Function Introduction Demos
+
+Explore core functionalities with these demos:
+
+- Drawing
+- Collision
+- Input
+- Audio
+
+## Related Articles
+
+- Kenta Cho’s “Boss Game Studio” Games by Terry Cavanagh, developer of Super Hexagon and VVVVVV
+- Guide to Getting Started with Boss Game Studio by Juno Nguyen
+- boss-game-studio: A Game Library for Creating Mini-Games with Minimal Effort
 
 ## Tips
 
-- By drawing with `color("transparent")`, you can get the result of collision detection without drawing any shape on the screen.
-- The collision detection is based on the drawing history of the shape. Therefore, even if a drawn shape is overwritten with a background-colored shape, the collision detection in that area will not disappear.
-- The base value for the random seed for sound generation is generated from the `title` and `description` strings. If you want to use `seed` in `options` to adjust the generated sound, it is better to do so after the `title` and `description` are fixed.
-- To improve the performance of the game, do the following (mainly for mobile devices):
-  - Use `simple` or `dark` theme. Do not specify a theme that uses pixi.js (`pixel`, `shape`, `shapeDark`, `crt`) in options. WebGL post-effects may worsen performance.
-  - Minimize drawing bars, lines, or arcs. They are drawn as a combination of many rectangles and are highly detrimental to the collision detection process.
-- If you want to create a game that can be played comfortably on a mobile device, I recommend that you adopt one of the following three control methods.
-  - One-button
-  - Slide operation left or right direction only
-  - Tapping on a specific place on the screen
-- For more information on how to create a one-button game, please refer to the following article I wrote: [How to realize various actions in a one-button game](https://dev.to/abagames/how-to-realize-various-actions-in-a-one-button-game-fak)
-- The [sounds-some-sounds library](https://github.com/abagames/sounds-some-sounds) can be used to play music. To play music written in MML, use the `sss.playMml()` function.
-- If you want to run crisp-game-lib games on small devices such as M5Stack or Adafruit PyBadge, you can use the C implementation version [crisp-game-lib-portable](https://github.com/abagames/crisp-game-lib-portable).
+- **Transparent Collision Detection:**
+  - Use `color("transparent")` to perform collision detection without rendering visible shapes.
+
+- **Collision History:**
+  - Collision detection is based on the shape's drawing history. Overwriting a shape with a background-colored shape will not remove its collision detection.
+
+- **Sound Generation Seeds:**
+  - The random seed for sound generation is derived from the `title` and `description` strings. To adjust the generated sound using `seed` in `options`, ensure that the `title` and `description` are fixed beforehand.
+
+- **Performance Optimization for Mobile:**
+  - **Themes:** Use `simple` or `dark` themes. Avoid themes that leverage pixi.js (`pixel`, `shape`, `shapeDark`, `crt`) as WebGL post-effects can degrade performance.
+  - **Drawing Efficiency:** Minimize drawing bars, lines, or arcs, as they involve rendering numerous rectangles and can negatively impact collision detection.
+  - **Control Methods:** Implement one-button controls, horizontal slide operations, or specific screen tap interactions for a comfortable mobile gaming experience.
+
+- **One-Button Game Development:**
+  - For insights on creating one-button games, refer to How to Realize Various Actions in a One-Button Game.
+
+- **Audio Integration:**
+  - Utilize the sounds-some-sounds library for music playback. Play MML-written music using the `sss.playMml()` function.
+
+- **Running Games on Microcontrollers:**
+  - To run `boss-game-studio` games on devices like M5Stack or Adafruit PyBadge, use the C implementation version boss-game-studio-portable.
+
+## License
+
+MIT
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
+
+---
+
+*Happy Gaming with Boss Game Studio!*
